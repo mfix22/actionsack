@@ -122,6 +122,24 @@ function MyComponent() {
 }
 ```
 
+### `TimeWindow`
+
+Show children after a certain amount of time, for a certain amount of time.
+
+##### Example
+
+```js
+import { TimeWindow } from 'actionsack'
+
+function MyMessage() {
+  return (
+    <TimeWindow showAfter={3000} showUntil={6000}>
+      Timed Message!
+    </TimeWindow>
+  )
+}
+```
+
 ### Modal
 
 > `wrapper HOC` component

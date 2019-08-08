@@ -1,4 +1,4 @@
-# Tackle Box 🎣
+# Action Sack 🎒
 
 > Collection of React user-experience hooks + containers for common interactions
 
@@ -7,7 +7,7 @@
 ## Getting Started
 
 ```bash
-yarn add @dawnlabs/tacklebox
+yarn add actionsack
 ```
 
 ## Usage
@@ -20,7 +20,7 @@ Takes any function and gives you a loading and error state. Good for handling
 general asynchronous interactions.
 
 ```js
-import { useAsyncCallback } from '@dawnlabs/tacklebox'
+import { useAsyncCallback } from 'actionsack'
 
 function MyAsyncButton(props) {
   const [onClick, { loading, error, data }] = useAsyncCallback(props.onClick)
@@ -44,7 +44,7 @@ Pass it a keyboard key and a handler to automatically listen for keyboard clicks
 ##### Example
 
 ```js
-import { useKeyboardListener } from '@dawnlabs/tacklebox'
+import { useKeyboardListener } from 'actionsack'
 
 function Modal(props) {
   useKeyboardListener('Escape', props.onClose)
@@ -62,7 +62,7 @@ Hook that gives you a temporary state value that you can either commit with `sub
 ##### Example
 
 ```javascript
-import { useTempValue } from '@dawnlabs/tacklebox'
+import { useTempValue } from 'actionsack'
 
 function MyForm(props) {
   const initialName = props.name
@@ -92,12 +92,12 @@ Creates an `onClick` handler that copies the text you pass in, and updates the `
 ##### Example
 
 ```javascript
-import { useCopyTextHandler } from '@dawnlabs/tacklebox'
+import { useCopyTextHandler } from 'actionsack'
 
 const interval = 2 * 1000 // 2 seconds
 
 function MyCopyButton() {
-  const { onClick, copied } = useCopyTextHandler('https://github.com/dawnlabs/tacklebox', {
+  const { onClick, copied } = useCopyTextHandler('https://github.com/mfix22/actionsack', {
     interval
   })
 
@@ -114,7 +114,7 @@ Subscribes to whether the network is online or off
 ##### Example
 
 ```javascript
-import { useOnline } from '@dawnlabs/tacklebox'
+import { useOnline } from 'actionsack'
 
 function MyComponent() {
   const online = useOnline()
@@ -131,7 +131,7 @@ Class controlled Modal component with click-away and ESC-key to close
 ##### Example
 
 ```javascript
-import {Modal} from '@dawnlabs/tacklebox'
+import {Modal} from 'actionsack'
 
 <Modal open={this.state.open} onClickAway={() => this.setState({ open: false})}>
   <form>

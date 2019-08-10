@@ -10,19 +10,19 @@ const updateInput = (input, value) =>
     }
   })
 
+function MyComponent() {
+  const { reset, submit } = useTempValue()
+
+  return (
+    <div>
+      <button onClick={submit}>Submit</button>
+      <button onClick={reset}>Reset</button>
+    </div>
+  )
+}
+
 describe('<TempValue />', () => {
   test('useTempValue() hook', () => {
-    function MyComponent() {
-      const { reset, submit } = useTempValue()
-
-      return (
-        <div>
-          <button onClick={submit}>Submit</button>
-          <button onClick={reset}>Reset</button>
-        </div>
-      )
-    }
-
     const { getByText } = render(<MyComponent />)
 
     fireEvent.click(getByText('Submit'))

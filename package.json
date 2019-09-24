@@ -1,6 +1,6 @@
 {
   "name": "actionsack",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "React UX components for handling common interactions",
   "source": "src/index.js",
   "main": "dist/index.js",

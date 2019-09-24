@@ -12,27 +12,28 @@ export const useEventListener = function(eventName, handler) {
 export const useKeyboardListener = function(key, handler) {
   const handleKeyDown = React.useCallback(
     function handleKeyDown(event) {
-      if (event.key.split('-').pop() === key) {
-        if (key.indexOf('⌘') > -1 || key.toLowerCase().indexOf('cmd') > -1) {
+      if (key.split('-').pop() === event.key) {
+        const k = key.toLowerCase()
+        if (k.indexOf('⌘') > -1 || k.indexOf('cmd') > -1) {
           if (!event.metaKey) {
             return
           }
         }
-        if (key.indexOf('⌃') > -1 || key.toLowerCase().indexOf('ctrl') > -1) {
+        if (k.indexOf('⌃') > -1 || k.indexOf('ctrl') > -1) {
           if (!event.ctrlKey) {
             return
           }
         }
-        if (key.indexOf('⇧') > -1 || key.toLowerCase().indexOf('shift') > -1) {
+        if (k.indexOf('⇧') > -1 || k.indexOf('shift') > -1) {
           if (!event.shiftKey) {
             return
           }
         }
         if (
-          key.indexOf('⌥') > -1 ||
-          key.toLowerCase().indexOf('option') > -1 ||
-          key.toLowerCase().indexOf('opt') > -1 ||
-          key.toLowerCase().indexOf('alt') > -1
+          k.indexOf('⌥') > -1 ||
+          k.indexOf('option') > -1 ||
+          k.indexOf('opt') > -1 ||
+          k.indexOf('alt') > -1
         ) {
           if (!event.altKey) {
             return

@@ -104,8 +104,8 @@ const options = {
 
 function MyCopyButton() {
   const { onClick, copied } = useCopyTextHandler('https://github.com/mfix22/actionsack', {
-    interval
-  }, options)
+    interval, options
+  })
 
   return <button onClick={onClick}>{copied ? 'COPIED!' : 'Copy URL'}</button>
 }

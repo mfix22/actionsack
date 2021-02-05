@@ -5,13 +5,13 @@ import { useAsyncCallback } from './AsyncButton'
 
 const wait = t => new Promise(res => setTimeout(res, t))
 
-export function useCopyTextHandler(textToCopy, { interval, options } = {}) {
+export function useCopyTextHandler(textToCopy, { interval = 0, ...optionsForCopy } = {}) {
   const [onClick, { loading: copied }] = useAsyncCallback(async () => {
-    copy(textToCopy, options)
+    copy(textToCopy, optionsForCopy)
     if (interval !== 0) {
       await wait(interval == null ? 1000 : interval)
     }
-  }, [textToCopy, interval, options])
+  }, [textToCopy, interval, optionsForCopy])
 
   return {
     onClick,
@@ -20,7 +20,7 @@ export function useCopyTextHandler(textToCopy, { interval, options } = {}) {
 }
 
 export const CopyButton = React.memo(function CopyButton(props) {
-  return props.children(useCopyTextHandler(props.text, { interval: props.interval, options: props.options }))
+  return props.children(useCopyTextHandler(props.text, props.options))
 })
 
 CopyButton.displayName = 'CopyButton'

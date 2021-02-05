@@ -96,15 +96,14 @@ For more information about `options`, see [API](https://github.com/sudodoki/copy
 ```javascript
 import { useCopyTextHandler } from 'actionsack'
 
-const interval = 2 * 1000 // 2 seconds
-
 const options = {
-    format: "text/html"
+    interval = 2 * 1000, // 2 seconds
+    format: "text/html",
 }
 
 function MyCopyButton() {
   const { onClick, copied } = useCopyTextHandler('https://github.com/mfix22/actionsack', {
-    interval, options
+    options
   })
 
   return <button onClick={onClick}>{copied ? 'COPIED!' : 'Copy URL'}</button>

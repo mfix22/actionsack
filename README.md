@@ -97,8 +97,8 @@ For more information about `options`, see [API](https://github.com/sudodoki/copy
 import { useCopyTextHandler } from 'actionsack'
 
 const options = {
-    interval = 2 * 1000, // 2 seconds
-    format: "text/html",
+  interval: 2 * 1000, // 2 seconds
+  format: "text/html",
 }
 
 function MyCopyButton() {

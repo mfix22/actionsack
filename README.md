@@ -89,17 +89,20 @@ function MyForm(props) {
 Creates an `onClick` handler that copies the text you pass in, and updates the `copied` field accordingly.
 **Note**: you must pass `onClick` to a `<button>` in order to copy the text.
 
+For more information about `options`, see [API](https://github.com/sudodoki/copy-to-clipboard#api).
+
 ##### Example
 
 ```javascript
 import { useCopyTextHandler } from 'actionsack'
 
-const interval = 2 * 1000 // 2 seconds
+const options = {
+  interval: 2 * 1000, // 2 seconds
+  format: "text/html",
+}
 
 function MyCopyButton() {
-  const { onClick, copied } = useCopyTextHandler('https://github.com/mfix22/actionsack', {
-    interval
-  })
+  const { onClick, copied } = useCopyTextHandler('https://github.com/mfix22/actionsack', options)
 
   return <button onClick={onClick}>{copied ? 'COPIED!' : 'Copy URL'}</button>
 }
@@ -140,7 +143,7 @@ function MyMessage() {
 }
 ```
 
-### Modal
+### `Modal`
 
 > `wrapper HOC` component
 

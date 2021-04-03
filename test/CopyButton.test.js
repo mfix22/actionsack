@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, wait } from '@testing-library/react'
+import { render, fireEvent, waitFor } from '@testing-library/react'
 
 import { CopyButton } from '../src'
 
@@ -12,7 +12,7 @@ describe('<CopyButton />', () => {
       rangeCount: 0,
       addRange: () => {},
       getRangeAt: () => {},
-      removeAllRanges: () => {}
+      removeAllRanges: () => {},
     })
 
     window.getSelection = getSelection
@@ -25,29 +25,27 @@ describe('<CopyButton />', () => {
     document.getSelection = undefined
   })
 
-  test.each([{ text: undefined, interval: undefined }, { text: 'Copy Text', interval: 3000 }])(
-    'should render correctly with interval: %s',
-    async props => {
-      jest.useFakeTimers()
+  test.each([
+    { text: undefined, interval: undefined },
+    { text: 'Copy Text', interval: 3000 },
+  ])('should render correctly with interval: %s', async (props) => {
+    jest.useFakeTimers()
 
-      const { getByText } = render(
-        <CopyButton {...props}>
-          {({ onClick, copied }) => (
-            <button onClick={onClick}>{copied ? 'Copied!' : 'Click'}</button>
-          )}
-        </CopyButton>
-      )
+    const { getByText } = render(
+      <CopyButton {...props}>
+        {({ onClick, copied }) => <button onClick={onClick}>{copied ? 'Copied!' : 'Click'}</button>}
+      </CopyButton>
+    )
 
-      fireEvent.click(getByText('Click'))
+    fireEvent.click(getByText('Click'))
 
-      getByText('Copied!')
+    getByText('Copied!')
 
-      jest.advanceTimersByTime(props.interval || 1000) // 1 second is the default
-      await wait()
+    jest.advanceTimersByTime(props.interval || 1000) // 1 second is the default
+    await waitFor(() => true)
 
-      getByText('Click')
+    getByText('Click')
 
-      expect(window.clipboardData.setData).toHaveBeenCalledWith('text', props.text)
-    }
-  )
+    expect(window.clipboardData.setData).toHaveBeenCalledWith('text', props.text)
+  })
 })

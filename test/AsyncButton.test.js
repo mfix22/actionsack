@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, wait } from '@testing-library/react'
+import { render, fireEvent, waitFor } from '@testing-library/react'
 
 import { AsyncButton } from '../src'
 
@@ -20,7 +20,7 @@ describe('<AsyncButton />', () => {
 
     expect(container.firstChild).toMatchSnapshot()
 
-    await wait()
+    await waitFor(() => true)
 
     expect(container.firstChild).toMatchSnapshot()
   })
@@ -34,7 +34,7 @@ describe('<AsyncButton />', () => {
     )
 
     fireEvent.click(getByText('Click'))
-    await wait()
+    await waitFor(() => true)
 
     expect(container.firstChild).toMatchSnapshot()
   })

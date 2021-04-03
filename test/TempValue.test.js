@@ -1,13 +1,13 @@
 import React from 'react'
-import { render, fireEvent, wait } from '@testing-library/react'
+import { render, fireEvent, waitFor } from '@testing-library/react'
 
 import { useTempValue, TempValue } from '../src'
 
 const updateInput = (input, value) =>
   fireEvent.change(input, {
     target: {
-      value
-    }
+      value,
+    },
   })
 
 function MyComponent() {
@@ -35,7 +35,7 @@ describe('<TempValue />', () => {
       <TempValue onSubmit={onSubmit} initialValue="">
         {({ hasChanged, loading, value, submit, reset, onInputChange }) => (
           <form
-            onSubmit={e => {
+            onSubmit={(e) => {
               e.preventDefault()
             }}
           >
@@ -71,7 +71,7 @@ describe('<TempValue />', () => {
 
     fireEvent.click(getByText('Submit'))
     getAllByText('Loading')
-    await wait()
+    await waitFor(() => true)
 
     expect(onSubmit).toHaveBeenCalledWith('Final Value')
     expect(getByText('Submit').disabled).toBe(true)

@@ -3,9 +3,9 @@ import copy from 'copy-to-clipboard'
 
 import { useAsyncCallback } from './AsyncButton'
 
-const wait = t => new Promise(res => setTimeout(res, t))
+const wait = (t) => new Promise((res) => setTimeout(res, t))
 
-export function useCopyTextHandler(textToCopy, { interval = 0, ...options } = {}) {
+export function useCopyTextHandler(textToCopy, { interval, ...options } = {}) {
   const [onClick, { loading: copied }] = useAsyncCallback(async () => {
     copy(textToCopy, options)
     if (interval !== 0) {
@@ -15,7 +15,7 @@ export function useCopyTextHandler(textToCopy, { interval = 0, ...options } = {}
 
   return {
     onClick,
-    copied
+    copied,
   }
 }
 
